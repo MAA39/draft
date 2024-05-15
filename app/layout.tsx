@@ -1,5 +1,8 @@
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,8 +18,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="ja">
+      <body className={cn(inter.className, "min-h-dvh")}>
+        <header className="h-16  border-b px-6 gap-4 flex items-center">
+          <Button asChild variant="ghost" className="font-bold text-xl">
+            <Link href="/">Draft</Link>
+          </Button>
+          <Button asChild variant="ghost" className="font-bold text-xl">
+            <Link href="/about">about</Link>
+          </Button>
+          <Button asChild variant="ghost" className="font-bold text-xl">
+            <Link href="/mypage">my page</Link>
+          </Button>
+        </header>
+        {children}
+        <footer className="h-16 sticky top-full border-t px-6 flex items-center">
+          footer
+        </footer>
+      </body>
     </html>
   );
 }
